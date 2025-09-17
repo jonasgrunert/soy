@@ -1,5 +1,5 @@
 import { join } from "@std/path";
-import { start } from "../../index.ts";
+import { start } from "../../main.ts";
 import { assertEquals } from "@std/assert/equals";
 
 const client = Deno.createHttpClient({
