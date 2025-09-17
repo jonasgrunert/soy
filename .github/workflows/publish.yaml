@@ -15,7 +15,7 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: vx.x.x
-      - run: deno test --coverage
+      - run: deno test -A --coverage
       - run: deno coverage --lcov --output=cov.lcov
       - uses: livewing/lcov-job-summary@v1.2.0
         with:
