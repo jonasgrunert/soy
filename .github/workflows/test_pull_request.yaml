@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: vx.x.x
+      - run: deno test --coverage
+      - run: deno coverage --lcov --output=cov.lcov
+      - uses: livewing/lcov-job-summary@v1.2.0
+        with:
+          lcov: cov.lcov
+      - uses: VeryGoodOpenSource/very_good_coverage@v2
+        with:
+          path: cov.lcov
+          min_coverage: 95
