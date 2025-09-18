@@ -1,5 +1,8 @@
 name: Publish
 
+env:
+  REGISTRY: ghcr.io
+
 on:
   push:
     tags:
