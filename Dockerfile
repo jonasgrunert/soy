@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 # Compile the main app
-RUN deno cache main.ts
+RUN deno cache main.ts && mkdir /state
 
 # Run the app
 CMD ["deno", "run", "-A", "main.ts"]

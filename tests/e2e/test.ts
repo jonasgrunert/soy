@@ -10,6 +10,17 @@ const client = Deno.createHttpClient({
 });
 
 async function runDocker(dir: string, username: string, password: string) {
+  const image = await fetch(
+    "http://docker/images/create?fromImage=ghcr.io/opentofu/opentofu:latest",
+    {
+      client,
+      method: "POST",
+    },
+  );
+  await image.text();
+  if (!image.ok) {
+    throw new Error("Unable to create container: " + await image.text());
+  }
   const create = await fetch(
     "http://docker/containers/create?name=tofu." + dir,
     {
