@@ -126,6 +126,7 @@ export function createRouter(cont: typeof controller, config: ResolvedConfig) {
         JSON.stringify(states.value.map((v) => {
           const u = new URL(req.url);
           u.searchParams.set("version", v.key);
+          u.pathname = "state";
           return { key: v.key, url: u.toString() };
         })),
         {

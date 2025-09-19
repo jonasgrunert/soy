@@ -280,7 +280,7 @@ Deno.test("Router GET /list - Success", async () => {
   assertEquals(
     await res.json(),
     states.map((s) => ({
-      url: url + "?version=" + s.key,
+      url: url.replace("/list", "/state") + "?version=" + s.key,
       key: s.key,
     })),
   );
